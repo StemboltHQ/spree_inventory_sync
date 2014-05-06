@@ -1,0 +1,21 @@
+<h1>Inventory Synchronizations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message Date</th>
+      <th>Started At</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @imports.each do |import| %>
+      <tr>
+        <td><%= import.message_date %></td>
+        <td><%= import.created_at %></td>
+        <td><%= link_to 'Show', admin_inventory_sync_import_path(import) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,39 @@
+<dl>
+  <dt>Exported from External Inventory at:</dt>
+  <dd>
+    <%= @import.message_date %>
+  </dd>
+  <dt>Imported to Spree at:</dt>
+  <dd>
+    <%= @import.created_at %>
+  </dd>
+</dl>
+
+<% if @import.stock_movements.any? %>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>SKU</th>
+      <th>Quantity Adjustment</th>
+    </thead>
+    <tbody>
+      <% @import.stock_movements.each do |movement| %>
+        <tr>
+          <td><%= movement.variant.name %></td>
+          <td>
+            <%= link_to movement.sku,
+              movement.variant.is_master? ?
+              [:admin, movement.product] :
+              [:edit, :admin, movement.product, movement.variant]
+            %>
+          </td>
+          <td style='text-align: right'>
+            <%= link_to movement.quantity, [:stock, :admin, movement.product] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  No stock movements were triggered by this import
+<% end %>
