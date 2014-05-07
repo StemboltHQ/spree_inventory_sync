@@ -22,13 +22,23 @@ bundle
 bundle exec rails g spree_inventory_sync:install
 ```
 
+Configure your inventory sync by doing the following in your application:
 
-Running
+In ``config/initializers/spree_inventory_sync.rb`
+
+```ruby
+Spree::InventorySync.configure do |config|
+  config.import_class = "" # A string containing the class to use for importing (i.e. Spree::InventorySync::Source::CoreWarhouse)
+  config.options      = {} # A hash contianing options to be passed to the source
+end
+```
+
+Support
 -------
 
-Import inventory
+The following back ends are currently supported:
 
-rake inventory:sync
+- Core Warehouse
 
 
 Testing
