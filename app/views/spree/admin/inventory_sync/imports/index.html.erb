@@ -17,3 +17,9 @@
     <% end %>
   </tbody>
 </table>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to "Synchronize Inventory Now", admin_inventory_sync_imports_path, method: :POST %>
+  </li>
+<% end %>

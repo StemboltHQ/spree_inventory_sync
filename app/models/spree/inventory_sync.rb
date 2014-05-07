@@ -1,5 +1,22 @@
 module Spree::InventorySync
-  def self.table_name_prefix
-    'spree_inventory_sync_'
+  class << self
+    attr_accessor :configuration
+
+    def configure
+      yield(configuration)
+    end
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def table_name_prefix
+      'spree_inventory_sync_'
+    end
+  end
+
+  class Configuration
+    attr_accessor :import_class
+    attr_accessor :options
   end
 end
