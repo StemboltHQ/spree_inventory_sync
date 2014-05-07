@@ -10,8 +10,7 @@ class Spree::Admin::InventorySync::ImportsController < Spree::Admin::BaseControl
   end
 
   def create
-    import = Spree::InventorySync::Import.create!(import_class: Spree::InventorySync.configuration.import_class, options: Spree::InventorySync.configuration.options)
-    import.run!
+    import = Spree::InventorySync::Import.run_default!
     redirect_to admin_inventory_sync_import_path(import)
   end
 end
