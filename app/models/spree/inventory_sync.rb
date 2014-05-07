@@ -1,7 +1,5 @@
 module Spree::InventorySync
   class << self
-    attr_accessor :configuration
-
     def configure
       yield(configuration)
     end
