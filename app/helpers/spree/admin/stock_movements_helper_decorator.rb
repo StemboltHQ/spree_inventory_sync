@@ -8,8 +8,8 @@ Spree::Admin::StockMovementsHelper.module_eval do
         stock_movement.originator.number
       end
     # BEGIN Modified Code
-    elsif stock_movement.originator.respond_to? :message_date
-      link_to stock_movement.originator.message_date, spree.admin_inventory_sync_import_path(stock_movement.originator)
+    elsif stock_movement.originator.is_a? Spree::InventorySync::Import
+      link_to stock_movement.originator.created_at, spree.admin_inventory_sync_import_path(stock_movement.originator)
     # END Modified Code
     else
       ""
